@@ -1,0 +1,33 @@
+import java.util.Scanner;  // Import Scanner class
+
+
+class Main {
+    public static void main(String[] args) {
+
+        int low = 5;
+        int average = 10;
+        int high = 20;
+
+        Scanner first = new Scanner(System.in);  // Create new Scanner object
+        System.out.println("First name: "); // End User Interaction
+        String firstName = first.nextLine();  // Read user input
+
+        Scanner last = new Scanner(System.in);
+        System.out.println("Last name: ");
+        String lastName = last.nextLine();
+
+        Scanner friends = new Scanner(System.in);
+        System.out.println("Amount of friends: ");
+        int num = friends.nextInt();
+        // Output vars and strings.
+        System.out.println("Hello " + firstName + " " + lastName + " with " + num + " friends");
+        // if statements
+        if (num <= low) {
+            System.out.println(firstName + " is a outcast");
+        } else if (num <= average) {
+            System.out.println(firstName + " is mediocre.");
+        } else {
+            System.out.println(firstName + " don't take any stands.");
+        }
+    }
+}
