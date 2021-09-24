@@ -1,0 +1,81 @@
+
+
+/*
+Author: ekarlsson66@gmail.com
+Date: 2021-09-22
+Version: 001
+*/
+
+// Import necessary libs.
+import java.util.Random;
+import java.util.Scanner;
+import java.util.HashMap;
+
+public class Main {
+
+    public static void main(String[] argv) {
+
+        Scanner userKeyboard = new Scanner(System.in);
+        boolean programRunning = true; //Run program true.
+        var score = new HashMap<String, Integer>();
+        int points = 0;
+
+        System.out.print("User: \n > ");
+        String user = userKeyboard.next();
+
+        
+        while (programRunning) {
+            
+            boolean menuThrowDice = false;
+            boolean menuQuitProgram = false;
+            //Menu presentation.
+            System.out.println("Hello " + user + "!\nMenu:\n1. Throw dices.\n2. Change user.\n3. Quit to CLI.\n\nCurrent score: " + points);
+            System.out.print("> ");
+            int menuChoice = userKeyboard.nextInt();
+
+            switch (menuChoice) {
+                case 1 -> menuThrowDice = true;
+                case 2 -> {
+                    System.out.print("New user: \n > ");
+                    user = userKeyboard.next();
+                    points = 0;
+                }
+                case 3 -> menuQuitProgram = true;
+
+                case 4 -> {
+                    //Hidden feature outputs user and points from Hashmap.
+                    for (String i : score.keySet()) {
+                        System.out.println("Name: " + i + " Score: " + score.get(i));
+                    }
+                }
+                default -> System.out.println("Invalid input. Try again.");
+            }
+
+            if (menuThrowDice) {
+                // diceRoll returns int 1-6.
+                Random random = new Random();
+                int diceRoll = random.nextInt(6) + 1;
+                //points = diceRoll;
+
+                if (diceRoll != 1) {
+                    points += diceRoll;
+                    System.out.println("Dice returns " + diceRoll + "\nTotal score: " + points);
+                    while (diceRoll == 6) {
+                        diceRoll = random.nextInt(6) + 1;
+                        points = points + diceRoll;
+                        System.out.println("Dice returns " + diceRoll + "\nTotal score: " + points);
+                    }
+                } else {
+                    points = 0;
+                    System.out.println("Dice landed on a 1. Your score is reset, sorry Dude/Dudette.");
+                }
+        }
+            score.put(user, points);
+            if (menuQuitProgram) {
+                // Break while loop with false statement.
+                programRunning = false;
+                System.out.println("Quiting game.");
+            }
+        }
+    }
+}
