@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] argv) {
 
         Scanner userKeyboard = new Scanner(System.in);
-        boolean programRunning = true; //Run program true.
+        boolean programRunning = true;
         var score = new HashMap<String, Integer>();
         int points = 0;
 
@@ -45,7 +45,6 @@ public class Main {
                 case 3 -> menuQuitProgram = true;
 
                 case 4 -> {
-                    //Hidden feature outputs user and points from Hashmap.
                     for (String i : score.keySet()) {
                         System.out.println("Name: " + i + " Score: " + score.get(i));
                     }
@@ -54,11 +53,10 @@ public class Main {
             }
 
             if (menuThrowDice) {
-                // diceRoll returns int 1-6.
+    
                 Random random = new Random();
                 int diceRoll = random.nextInt(6) + 1;
-                //points = diceRoll;
-
+                    
                 if (diceRoll != 1) {
                     points += diceRoll;
                     System.out.println("Dice returns " + diceRoll + "\nTotal score: " + points);
@@ -74,11 +72,9 @@ public class Main {
         }
             score.put(user, points);
             if (menuQuitProgram) {
-                // Break while loop with false statement.
                 programRunning = false;
                 System.out.println("Quiting game.");
             }
         }
     }
 }
-
