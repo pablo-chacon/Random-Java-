@@ -57,7 +57,7 @@ public class Main {
                     // Addition
                     case '+' -> {
                         result = num1 + num2;
-                        memory.put(String.valueOf(num1 + operation + num2), result);
+                        memory.put((num1 + operation + num2), result);
                         System.out.print(result);
                     }
                     // Subtraction
