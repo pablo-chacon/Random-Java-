@@ -3,56 +3,98 @@ package org.example;
 /*
 Author: ekarlsson66@gmail.com
 Date: 2022-09-19
-Version: 001
+Version: 002
 Simple calculator capable of handling simple operations (+, -, *, /).
-Using Scanner, enhanced switch to make calculations.
+Using Scanner, HashMap to store equations and results, enhanced switch to make calculations.
+If to make menu choice.
+While loop to keep program running.
 */
 
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
 
-        //Vars, operator character, Scanner, double.
-        char operator;
+        //Vars, operations character, Scanner, double.
+        boolean runProgram = true;
+        HashMap<String, Double> memory = new HashMap<>();
         Scanner input = new Scanner(System.in);
-        double x, y, result;
+        double num1, num2, result;
 
-        System.out.print("Calculator\nInput number:\n>");
-        x = input.nextDouble();
+        //While loop to keep program running.
+        while (runProgram) {
 
-        System.out.print("Operation:\n +, -, *, /\n>");
-        operator = input.next().charAt(0);
+            boolean exitProgram = false;
+            //Menu
+            System.out.print("""
+            <<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>
+             Welcome to my simple calculator.
+             2 decimal digits.
+             Operations: +, -, *, /
+             <<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>
+             Calculate: c
+             Check history: h
+             Exit program: q 
+            <<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>> 
+            >  """);
 
-        System.out.print("Input number:\n> ");
-        y = input.nextDouble();
+            String choice = input.next();
 
-        // Compare operator var with cases.
-        switch (operator) {
-            // Addition
-            case '+' -> {
-                result = x + y;
-                System.out.println(x + " + " + y + " = " + result);
+            if (choice.equals("c")) {
+
+                System.out.print("Input number:\n>");
+                num1 = input.nextDouble();
+
+
+                System.out.print("Operation:\n +, -, *, /\n>");
+                String op = input.next();
+
+                System.out.print("Input number:\n> ");
+                num2 = input.nextDouble();
+
+                // Compare operations var with cases.
+                switch (op.charAt(0)) {
+                    // Addition
+                    case '+' -> {
+                        result = num1 + num2;
+                        memory.put(num1 + " + " + num2, result);
+                        System.out.print(memory);
+                    }
+                    // Subtraction
+                    case '-' -> {
+                        result = num1 - num2;
+                        memory.put(num1 + " - " + num2, result);
+                        System.out.print(memory);
+                    }
+                    // Multiplication
+                    case '*' -> {
+                        result = num1 * num2;
+                        memory.put(num1 + " * " + num2, result);
+                        System.out.print(memory);
+                    }
+                    // Division
+                    case '/' -> {
+                        result = num1 / num2;
+                        memory.put(num1 + " / " + num2, result);
+                        System.out.print(memory);
+                    }
+                    // Error handling
+                    default -> {
+                        System.out.println("Invalid operations! Try again.");
+                    }
+                }
+            } else if (choice.equals("h")) {
+                System.out.println(memory);
+            } else {
+                System.out.println("Exiting. Bye.");
+                // Close Scanner
+                input.close();
+                runProgram = false;
             }
-            // Subtraction
-            case '-' -> {
-                result = x - y;
-                System.out.println(x + " - " + y + " = " + result);
-            }
-            // Multiplication
-            case '*' -> {
-                result = x * y;
-                System.out.println(x + " * " + y + " = " + result);
-            }
-            // Division
-            case '/' -> {
-                result = x / y;
-                System.out.println(x + " / " + y + " = " + result);
-            }
-            // Error handling
-            default -> System.out.println("Invalid operator!");
         }
-        // Close Scanner
-        input.close();
     }
 }
+
+
+
