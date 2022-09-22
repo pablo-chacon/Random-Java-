@@ -5,7 +5,7 @@ Author: ekarlsson66@gmail.com
 Date: 2022-09-19
 Version: 002
 Simple calculator capable of handling simple operations (+, -, *, /).
-Using Scanner, HashMap to store equations and results, enhanced switch to make calculations.
+Using Scanner, enhanced switch to make calculations.
 If to make menu choice.
 While loop to keep program running.
 */
@@ -18,17 +18,16 @@ public class Main {
 
         //Vars, operations character, Scanner, double.
         boolean runProgram = true;
-        HashMap<String, Double> memory = new HashMap<>();
-        Scanner input = new Scanner(System.in);
-        double num1, num2, result;
 
         //While loop to keep program running.
         while (runProgram) {
 
-            boolean exitProgram = false;
+            HashMap<String, Double> memory = new HashMap<>();
+            Scanner input = new Scanner(System.in);
+            double num1, num2, result;
             //Menu
             System.out.print("""
-            <<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>
+            \n<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>
              Welcome to my simple calculator.
              2 decimal digits.
              Operations: +, -, *, /
@@ -46,38 +45,38 @@ public class Main {
                 System.out.print("Input number:\n>");
                 num1 = input.nextDouble();
 
-
                 System.out.print("Operation:\n +, -, *, /\n>");
-                String op = input.next();
+                String operation = input.next();
+
 
                 System.out.print("Input number:\n> ");
                 num2 = input.nextDouble();
 
                 // Compare operations var with cases.
-                switch (op.charAt(0)) {
+                switch (operation.charAt(0)) {
                     // Addition
                     case '+' -> {
                         result = num1 + num2;
-                        memory.put(num1 + " + " + num2, result);
-                        System.out.print(memory);
+                        memory.put(String.valueOf(num1 + operation + num2), result);
+                        System.out.print(result);
                     }
                     // Subtraction
                     case '-' -> {
                         result = num1 - num2;
-                        memory.put(num1 + " - " + num2, result);
-                        System.out.print(memory);
+                        memory.put(String.valueOf(num1 + operation + num2), result);
+                        System.out.print(result);
                     }
                     // Multiplication
                     case '*' -> {
                         result = num1 * num2;
-                        memory.put(num1 + " * " + num2, result);
-                        System.out.print(memory);
+                        memory.put(String.valueOf(num1 + operation + num2), result);
+                        System.out.print(result);
                     }
                     // Division
                     case '/' -> {
                         result = num1 / num2;
-                        memory.put(num1 + " / " + num2, result);
-                        System.out.print(memory);
+                        memory.put(String.valueOf(num1 + operation + num2), result);
+                        System.out.print(result);
                     }
                     // Error handling
                     default -> {
