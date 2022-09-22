@@ -63,19 +63,19 @@ public class Main {
                     // Subtraction
                     case '-' -> {
                         result = num1 - num2;
-                        memory.put(String.valueOf(num1 + operation + num2), result);
+                        memory.put((num1 + operation + num2), result);
                         System.out.print(result);
                     }
                     // Multiplication
                     case '*' -> {
                         result = num1 * num2;
-                        memory.put(String.valueOf(num1 + operation + num2), result);
+                        memory.put((num1 + operation + num2), result);
                         System.out.print(result);
                     }
                     // Division
                     case '/' -> {
                         result = num1 / num2;
-                        memory.put(String.valueOf(num1 + operation + num2), result);
+                        memory.put((num1 + operation + num2), result);
                         System.out.print(result);
                     }
                     // Error handling
