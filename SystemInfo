@@ -1,0 +1,32 @@
+package org.example;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+/*
+Simple program to get OS info and IP. This is a work in progress.
+Author: ekarlsson66@gmail.com
+Date: 2022-09-23
+Version: 001
+*/
+
+public class Main {
+    public static void main(String[] args) {
+        //Vars
+        String OSname = "os.name";
+        String OSversion = "os.version";
+        String OSarchitecture = "os.arch";
+        System.out.println("\nOS name: " +
+                System.getProperty(OSname));
+        System.out.println("OS Version: " +
+                System.getProperty(OSversion));
+        System.out.println("OS Architecture: " +
+                System.getProperty(OSarchitecture));
+        //Error handling if Host is down. 
+        try {
+            System.out.println("IP Address: " + InetAddress.getLocalHost().getHostAddress());
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
