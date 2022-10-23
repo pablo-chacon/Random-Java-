@@ -30,7 +30,6 @@ public class DumpSys {
 
                 
             }
-
         }
     }
 
@@ -49,6 +48,7 @@ public class DumpSys {
                3. Heavy truck. 
                """;
     }
+
     public static String menu() {
         return """
            1. Available lanes.
@@ -76,7 +76,4 @@ public class DumpSys {
         return lane;    
     
     }
-    
-    
-    
 }
