@@ -1,3 +1,5 @@
+package org.example;
+
 import org.example.Vehicle;
 
 public class Van extends Vehicle {
